@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="be3a2af4e9fe4eb7add73aae545b4dee" Name="Diagram1">
+        <EntityTypeShape EntityType="DataModel.analyzer" Width="1.5" PointX="3.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.country" Width="1.5" PointX="1.5" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.ensurance_patients" Width="1.5" PointX="3.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.ensurance" Width="1.5" PointX="1.5" PointY="33.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.order_research_objects" Width="1.5" PointX="6" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.order_services" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.order_statuses" Width="1.5" PointX="1.5" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.order" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.patient" Width="1.5" PointX="1.5" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.research_objects" Width="1.5" PointX="3.75" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.research_result_statuses" Width="1.5" PointX="3.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.research_results" Width="1.5" PointX="6" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.service" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.social_types" Width="1.5" PointX="1.5" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.user_types" Width="1.5" PointX="1.5" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DataModel.user" Width="1.5" PointX="1.5" PointY="13" IsExpanded="true" />
+        <AssociationConnector Association="DataModel.FK_research_results_analyzers" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_patients_countries" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_ensurance_patients_ensurances" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_ensurance_patients_patients" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_order_research_objects_orders" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_order_research_objects_research_objects" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_order_services_orders" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_order_services_services" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_orders_order_statuses" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_orders_users" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_patients_social_types" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_research_objects_patients" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_research_results_research_objects" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_research_results_research_result_statuses" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_research_results_services" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_research_results_users" ManuallyRouted="false" />
+        <AssociationConnector Association="DataModel.FK_users_user_types" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

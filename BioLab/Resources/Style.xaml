@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:BioLab.Resources">
+    <Color x:Key="WindowBackground">
+        #ffffff
+    </Color>
+    <Color x:Key="AccentBackground">
+        #76e383
+    </Color>
+    <Color x:Key="Accent">
+        #498c51
+    </Color>
+    <FontFamily x:Key="DefaultFont" >Comic Sans MS</FontFamily>
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+    </Style>
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+    </Style>
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+    </Style>
+    <Style TargetType="{x:Type DataGrid}">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+    </Style>
+    <Style TargetType="{x:Type DataGridCell}">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}"/>
+    </Style>
+</ResourceDictionary>
