@@ -77,6 +77,9 @@
     <Compile Include="UI\Pages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Pages\CreateResearchObjectPage.xaml.cs">
+      <DependentUpon>CreateResearchObjectPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pages\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UI\Elements\Header.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pages\CreateResearchObjectPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -31,10 +31,15 @@
             <TextBlock FontSize="26">Доступные анализы: </TextBlock>
             <StackPanel x:Name="UserServices"></StackPanel>
         </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="100">
-            <Button x:Name="CreateOrderButton" Margin="5">Создать заказ</Button>
-            <Button x:Name="CreateOrderButton1" Margin="5">Создать заказ</Button>
-            <Button x:Name="CreateOrderButton2" Margin="5">Создать заказ</Button>
+        <StackPanel x:Name="MenuContainer" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150">
+            <Button Tag="1" x:Name="CreateResearchObjectButton" Margin="5" Click="CreateResearchObjectButton_Click">Прием пробирки</Button>
+            <Button Tag="1" x:Name="CreateOrderButton" Margin="5">Создать заказ</Button>
+            <Button Tag="2" x:Name="CreateResearchResultButton" Margin="5">
+                <TextBlock TextAlignment="Center">
+                    Занести результат <LineBreak/> исследования
+                </TextBlock>
+            </Button>
+            <Button Tag="3" x:Name="ListOrdersButtons" Margin="5">Просмотреть заказы</Button>
         </StackPanel>
     </Grid>
 </Page>
