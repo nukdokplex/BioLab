@@ -24,6 +24,7 @@ namespace BioLab
     public partial class MainWindow : Window
     {
         public static Header header;
+        public static Footer footer;
         
         public MainWindow()
         {
@@ -37,6 +38,8 @@ namespace BioLab
             BodyContainer.Navigate(new AuthorizationPage());
             header = new Header();
             HeaderContainer.Navigate(header);
+            footer = new Footer();
+            FooterContainer.Navigate(footer);
 
         }
     }
