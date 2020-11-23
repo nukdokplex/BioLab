@@ -102,5 +102,10 @@ namespace BioLab.UI.Pages
         {
             NavigationService.Navigate(new CreateResearchObjectPage());
         }
+
+        private void CreateOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new CreateOrderPage());
+        }
     }
 }

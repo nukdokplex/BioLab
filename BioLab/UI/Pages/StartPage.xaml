@@ -33,7 +33,7 @@
         </StackPanel>
         <StackPanel x:Name="MenuContainer" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150">
             <Button Tag="1" x:Name="CreateResearchObjectButton" Margin="5" Click="CreateResearchObjectButton_Click">Прием пробирки</Button>
-            <Button Tag="1" x:Name="CreateOrderButton" Margin="5">Создать заказ</Button>
+            <Button Tag="1" x:Name="CreateOrderButton" Margin="5" Click="CreateOrderButton_Click">Создать заказ</Button>
             <Button Tag="2" x:Name="CreateResearchResultButton" Margin="5">
                 <TextBlock TextAlignment="Center">
                     Занести результат <LineBreak/> исследования
