@@ -37,6 +37,19 @@ namespace BioLab.UI.Pages
         private long LastPage = 0;
         private int EntriesPerPage = 20;
         private string CurrentSearchQuery = "";
+        private long SelectedPatientId 
+        { 
+            get
+            {
+                long? id = (patientsDataGrid.SelectedItem as PatientsShrinked).id;
+                if (id.HasValue)
+                {
+                    return unchecked((long)id);
+                }
+                return -1;
+
+            }
+        }
         private int CurrentOffset {
             get
             {
@@ -62,6 +75,8 @@ namespace BioLab.UI.Pages
             LastPage = (EntriesCount - 1) / EntriesPerPage + 1;
             LastPage--;
         }
+
+        
 
         private void RefreshPatients()
         {
@@ -142,7 +157,51 @@ namespace BioLab.UI.Pages
 
         private void CreateResearchObjectButton_Click(object sender, RoutedEventArgs e)
         {
+            long selectedPatientId = SelectedPatientId;
+            if (selectedPatientId != -1)
+            {
+                patient selectedPatient;
+                try
+                {
+                     selectedPatient = (from p in App.DB.patients
+                                               where p.id == selectedPatientId
+                                               select p).Single();
+                }
+                catch (InvalidOperationException exception)
+                {
+                    MessageBox.Show("Произошла ошибка при попытке получения данных о пациенте: " + exception.Message, "Ошибка приема пробирки", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
 
+                long barcode;
+
+                if (!long.TryParse(barcodeField.Text, out barcode))
+                {
+                    MessageBox.Show("Указан недопустимый штри-код пробирки", "Ошибка приема пробирки", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                research_objects researchObject = new research_objects();
+                researchObject.barcode = barcode;
+                researchObject.date = DateTime.Now;
+                researchObject.patient = selectedPatient.id;
+
+                try
+                {
+                    App.DB.research_objects.Add(researchObject);
+                    App.DB.SaveChanges();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show("Произошла ошибка при попытке добавления записи в базу данных: " + exception.Message, "Ошибка приема пробирки", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                MessageBox.Show("Запись успешно добавлена!", "Прием пробирок", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Пациент должен быть обязательно выбран!", "Ошибка приема пробирки", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void CurrentPageTextBox_KeyDown(object sender, KeyEventArgs e)
