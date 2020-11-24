@@ -33,5 +33,10 @@
             </StackPanel>
             <Button x:Name="authButton" Width="175" FontSize="18" Click="authButton_Click">Авторизоваться</Button>
         </StackPanel>
+        <Button x:Name="OpenAuthTriesWindowsButton" Width="175" FontSize="18" Height="60" Grid.Column="1" Grid.Row="2" Click="OpenAuthTriesWindowsButton_Click">
+            <TextBlock TextAlignment="Center" >
+                Открыть историю<LineBreak/>авторизаций
+            </TextBlock>
+        </Button>
     </Grid>
 </Page>

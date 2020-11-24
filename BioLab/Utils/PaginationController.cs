@@ -22,11 +22,18 @@ namespace BioLab.Utils
                 Controls.SetEnabledState(false);
                 if (value <= LastPage && value >= 0)
                 {
+
                     _currentPage = value;
                     Controls.CurrentPageTextBox.Text = (value + 1).ToString();
-                    OnRefresh(this, new PaginationOnRefreshEventArgs(CurrentOffset, CurrentSearchQuery, Controls));
+                    if (EntriesPerPage != -1)
+                    {
+                        //OnRefresh(this, new PaginationOnRefreshEventArgs(CurrentOffset, CurrentSearchQuery, -1, Controls));
+                    }
+                    else
+                    {
+                       // OnRefresh(this, new PaginationOnRefreshEventArgs(0, CurrentSearchQuery, -1, Controls));
+                    }
                 }
-                
             }
         }
 
@@ -49,7 +56,7 @@ namespace BioLab.Utils
             } 
         }
 
-        public PaginationController(int entriesPerPage, long entriesCount, PaginationControls controls, EventHandler<PaginationOnRefreshEventArgs> onRefresh)
+        public PaginationController(int entriesPerPage, long entriesCount, PaginationControls controls)
         {
             EntriesPerPage = entriesPerPage;
             Controls = controls;
@@ -114,7 +121,30 @@ namespace BioLab.Utils
         {
             EntriesCount = entriesCount;
             CurrentPage = 0;
-            OnRefresh(this, new PaginationOnRefreshEventArgs(CurrentOffset, CurrentSearchQuery, Controls));
+            if (EntriesPerPage == -1)
+            {
+                OnRefresh(this, new PaginationOnRefreshEventArgs(CurrentOffset, CurrentSearchQuery, -1, Controls));
+            }
+            else
+            {
+                OnRefresh(this, new PaginationOnRefreshEventArgs(CurrentOffset, CurrentSearchQuery, -1, Controls));
+            }
+
+        }
+
+        public void EntriesPerPageCountChanged(int entriesPerPage)
+        {
+            EntriesPerPage = entriesPerPage;
+            CurrentPage = 0;
+            if (entriesPerPage == -1)
+            {
+                OnRefresh(this, new PaginationOnRefreshEventArgs(CurrentOffset, CurrentSearchQuery, -1, Controls));
+            }
+            else
+            {
+                OnRefresh(this, new PaginationOnRefreshEventArgs(CurrentOffset, CurrentSearchQuery, -1, Controls));
+            }
+            
         }
 
         public event EventHandler<PaginationOnRefreshEventArgs> OnRefresh;
@@ -125,19 +155,22 @@ namespace BioLab.Utils
         public long CurrentOffset;
         public string SearchQuery;
         public PaginationControls Controls;
+        public long EntriesCount;
         
 
-        public PaginationOnRefreshEventArgs(long currentOffset, string searchQuery)
+        public PaginationOnRefreshEventArgs(long currentOffset, string searchQuery, long entriesCount)
         {
             CurrentOffset = currentOffset;
             SearchQuery = searchQuery;
+            EntriesCount = entriesCount;
         }
 
-        public PaginationOnRefreshEventArgs(long currentOffset, string searchQuery, PaginationControls controls)
+        public PaginationOnRefreshEventArgs(long currentOffset, string searchQuery, long entriesCount, PaginationControls controls)
         {
             CurrentOffset = currentOffset;
             SearchQuery = searchQuery;
             Controls = controls;
+            EntriesCount = entriesCount;
         }
     }
     class PaginationControls

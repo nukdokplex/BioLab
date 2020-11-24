@@ -70,6 +70,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Database\DataModels\AuthTryShrinked.cs" />
     <Compile Include="Database\DataModels\PatientsShrinked.cs" />
     <Compile Include="Database\DataModels\Service.cs" />
     <Compile Include="Database\users_auth_tries.cs">
@@ -84,6 +85,9 @@
     <Compile Include="UI\Pages\AuthorizationPage.xaml.cs">
       <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Pages\AuthTriesHistoryPage.xaml.cs">
+      <DependentUpon>AuthTriesHistoryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pages\CreateOrderPage.xaml.cs">
       <DependentUpon>CreateOrderPage.xaml</DependentUpon>
     </Compile>
@@ -92,6 +96,9 @@
     </Compile>
     <Compile Include="UI\Pages\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Windows\AuthTriesList.xaml.cs">
+      <DependentUpon>AuthTriesList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\PaginationController.cs" />
     <Page Include="MainWindow.xaml">
@@ -177,6 +184,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Pages\AuthTriesHistoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Pages\CreateOrderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -186,6 +197,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Pages\StartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Windows\AuthTriesList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

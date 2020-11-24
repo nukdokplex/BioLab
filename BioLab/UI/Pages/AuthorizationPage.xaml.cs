@@ -1,4 +1,5 @@
 ﻿using BioLab.Database;
+using BioLab.UI.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,11 @@ namespace BioLab.UI.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             MainWindow.header.HeaderTitle.Text = Title;
+        }
+
+        private void OpenAuthTriesWindowsButton_Click(object sender, RoutedEventArgs e)
+        {
+            (new AuthTriesList()).Show();
         }
     }
 }

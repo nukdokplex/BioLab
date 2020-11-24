@@ -1,0 +1,51 @@
+﻿<Window x:Class="BioLab.UI.Windows.AuthTriesList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BioLab.UI.Windows"
+        mc:Ignorable="d"
+        Title="AuthTriesList" Height="600" Width="800" Loaded="Window_Loaded">
+    <ScrollViewer>
+        <StackPanel>
+            <TextBlock FontSize="26" HorizontalAlignment="Center" Margin="0,15,0,15">История входов пользователей</TextBlock>
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                <TextBlock>Логин пользователя:</TextBlock>
+                <TextBox x:Name="UserLoginField" Width="200" Margin="10,0,0,0" KeyDown="AuthTriesHistoryUserLoginField_KeyDown"/>
+                <TextBlock Margin="10,0,0,0">(оставьте пустым для вывода всей истории)</TextBlock>
+                
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+                <TextBlock>Логин пользователя:</TextBlock>
+                <DatePicker x:Name="TriedAtTextBox"/>
+                <TextBlock Margin="10,0,0,0">(оставьте пустым для вывода всей истории)</TextBlock>
+            </StackPanel>
+            <DataGrid Height="300" x:Name="AuthTriesHistoryDataGrid"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,5">
+                <Button x:Name="FirstPageButton" Width="30">&lt;&lt;</Button>
+                <Button x:Name="PreviousPageButton" Width="30">&lt;</Button>
+                <TextBox x:Name="SpecifyPageTextBox" Width="60" TextAlignment="Center"/>
+                <Button x:Name="NextPageButton" Width="30">&gt;</Button>
+                <Button x:Name="LastPageButton" Width="30">&gt;&gt;</Button>
+            </StackPanel>
+            <ComboBox Width="60" Name="AuthTriesOutputCountCombobox" DropDownClosed="AuthTriesOutputCountCombobox_DropDownClosed">
+                <ComboBoxItem Tag="-1">
+                    все
+                </ComboBoxItem>
+                <ComboBoxItem IsSelected="True" Tag="10">
+                    10
+                </ComboBoxItem>
+                <ComboBoxItem Tag="50">
+                    50
+                </ComboBoxItem>
+                <ComboBoxItem Tag="100">
+                    100
+                </ComboBoxItem>
+            </ComboBox>
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                <TextBlock>Количество успешных входов:</TextBlock>
+                <TextBlock Margin="5,0,0,0" x:Name="SuccessfulAuthTriesCountTextBox"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Window>
