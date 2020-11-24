@@ -38,6 +38,8 @@
         <AssociationConnector Association="DataModel.FK_research_results_services" ManuallyRouted="false" />
         <AssociationConnector Association="DataModel.FK_research_results_users" ManuallyRouted="false" />
         <AssociationConnector Association="DataModel.FK_users_user_types" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DataModel.users_auth_tries" Width="1.5" PointX="3.75" PointY="11.625" />
+        <AssociationConnector Association="DataModel.FK_users_auth_tries_users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

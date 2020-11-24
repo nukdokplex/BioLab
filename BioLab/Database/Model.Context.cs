@@ -41,5 +41,6 @@ namespace BioLab.Database
         public virtual DbSet<social_types> social_types { get; set; }
         public virtual DbSet<user_types> user_types { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<users_auth_tries> users_auth_tries { get; set; }
     }
 }

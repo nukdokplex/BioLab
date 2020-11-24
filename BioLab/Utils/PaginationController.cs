@@ -12,7 +12,7 @@ namespace BioLab.Utils
 
         protected long _currentPage;
         private long CurrentPage
-        {
+        { 
             get
             {
                 return _currentPage;

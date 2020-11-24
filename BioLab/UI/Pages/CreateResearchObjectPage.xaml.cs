@@ -41,13 +41,12 @@ namespace BioLab.UI.Pages
         { 
             get
             {
-                long? id = (patientsDataGrid.SelectedItem as PatientsShrinked).id;
-                if (id.HasValue)
-                {
-                    return unchecked((long)id);
-                }
+                 long? id = (patientsDataGrid.SelectedItem as PatientsShrinked).id;
+                 if (id.HasValue)
+                    {
+                        return unchecked((long)id);
+                    }
                 return -1;
-
             }
         }
         private int CurrentOffset {

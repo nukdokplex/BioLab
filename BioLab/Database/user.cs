@@ -19,6 +19,7 @@ namespace BioLab.Database
         {
             this.orders = new HashSet<order>();
             this.research_results = new HashSet<research_results>();
+            this.users_auth_tries = new HashSet<users_auth_tries>();
         }
     
         public long id { get; set; }
@@ -35,5 +36,7 @@ namespace BioLab.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<research_results> research_results { get; set; }
         public virtual user_types user_types { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<users_auth_tries> users_auth_tries { get; set; }
     }
 }

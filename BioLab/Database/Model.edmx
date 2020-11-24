@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DataModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DataModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="analyzers">
           <Key>
             <PropertyRef Name="id" />
@@ -154,6 +154,15 @@
           <Property Name="last_enter" Type="datetime" />
           <Property Name="services" Type="ntext" Nullable="false" />
           <Property Name="user_type" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users_auth_tries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="user" Type="bigint" Nullable="false" />
+          <Property Name="tried_at" Type="datetime" Nullable="false" />
+          <Property Name="is_success" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_ensurance_patients_ensurances">
           <End Role="ensurances" Type="Self.ensurances" Multiplicity="1">
@@ -377,6 +386,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_users_auth_tries_users">
+          <End Role="users" Type="Self.users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="users_auth_tries" Type="Self.users_auth_tries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_auth_tries">
+              <PropertyRef Name="user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_users_user_types">
           <End Role="user_types" Type="Self.user_types" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -408,6 +431,7 @@
           <EntitySet Name="social_types" EntityType="Self.social_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user_types" EntityType="Self.user_types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users_auth_tries" EntityType="Self.users_auth_tries" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ensurance_patients_ensurances" Association="Self.FK_ensurance_patients_ensurances">
             <End Role="ensurances" EntitySet="ensurances" />
             <End Role="ensurance_patients" EntitySet="ensurance_patients" />
@@ -472,13 +496,16 @@
             <End Role="users" EntitySet="users" />
             <End Role="research_results" EntitySet="research_results" />
           </AssociationSet>
+          <AssociationSet Name="FK_users_auth_tries_users" Association="Self.FK_users_auth_tries_users">
+            <End Role="users" EntitySet="users" />
+            <End Role="users_auth_tries" EntitySet="users_auth_tries" />
+          </AssociationSet>
           <AssociationSet Name="FK_users_user_types" Association="Self.FK_users_user_types">
             <End Role="user_types" EntitySet="user_types" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -665,6 +692,7 @@
           <NavigationProperty Name="orders" Relationship="Self.FK_orders_users" FromRole="users" ToRole="orders" />
           <NavigationProperty Name="research_results" Relationship="Self.FK_research_results_users" FromRole="users" ToRole="research_results" />
           <NavigationProperty Name="user_types" Relationship="Self.FK_users_user_types" FromRole="users" ToRole="user_types" />
+          <NavigationProperty Name="users_auth_tries" Relationship="DataModel.FK_users_auth_tries_users" FromRole="user" ToRole="users_auth_tries" />
         </EntityType>
         <Association Name="FK_research_results_analyzers">
           <End Role="analyzers" Type="Self.analyzer" Multiplicity="1">
@@ -987,7 +1015,36 @@
             <End Role="user_types" EntitySet="user_types" />
             <End Role="users" EntitySet="users" />
           </AssociationSet>
+          <EntitySet Name="users_auth_tries" EntityType="DataModel.users_auth_tries" />
+          <AssociationSet Name="FK_users_auth_tries_users" Association="DataModel.FK_users_auth_tries_users">
+            <End Role="user" EntitySet="users" />
+            <End Role="users_auth_tries" EntitySet="users_auth_tries" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="users_auth_tries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="user" Type="Int64" Nullable="false" />
+          <Property Name="tried_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="is_success" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="user1" Relationship="DataModel.FK_users_auth_tries_users" FromRole="users_auth_tries" ToRole="user" />
+        </EntityType>
+        <Association Name="FK_users_auth_tries_users">
+          <End Type="DataModel.user" Role="user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DataModel.users_auth_tries" Role="users_auth_tries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users_auth_tries">
+              <PropertyRef Name="user" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1157,6 +1214,16 @@
                 <ScalarProperty Name="last_enter" ColumnName="last_enter" />
                 <ScalarProperty Name="services" ColumnName="services" />
                 <ScalarProperty Name="user_type" ColumnName="user_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users_auth_tries">
+            <EntityTypeMapping TypeName="DataModel.users_auth_tries">
+              <MappingFragment StoreEntitySet="users_auth_tries">
+                <ScalarProperty Name="is_success" ColumnName="is_success" />
+                <ScalarProperty Name="tried_at" ColumnName="tried_at" />
+                <ScalarProperty Name="user" ColumnName="user" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

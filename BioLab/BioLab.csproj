@@ -72,6 +72,9 @@
     </ApplicationDefinition>
     <Compile Include="Database\DataModels\PatientsShrinked.cs" />
     <Compile Include="Database\DataModels\Service.cs" />
+    <Compile Include="Database\users_auth_tries.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="UI\Elements\Footer.xaml.cs">
       <DependentUpon>Footer.xaml</DependentUpon>
     </Compile>
