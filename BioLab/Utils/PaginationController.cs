@@ -11,7 +11,7 @@ namespace BioLab.Utils
         private PaginationControls Controls;
 
         protected long _currentPage;
-        private long CurrentPage
+        public long CurrentPage
         { 
             get
             {

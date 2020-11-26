@@ -8,19 +8,19 @@
         Title="AuthTriesList" Height="600" Width="800" Loaded="Window_Loaded">
     <ScrollViewer>
         <StackPanel>
-            <TextBlock FontSize="26" HorizontalAlignment="Center" Margin="0,15,0,15">История входов пользователей</TextBlock>
-            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
+            <TextBlock FontSize="26" HorizontalAlignment="Center" Margin="0,15,0,0">История входов пользователей</TextBlock>
+            <StackPanel Margin="10,15,0,0" Orientation="Horizontal">
                 <TextBlock>Логин пользователя:</TextBlock>
                 <TextBox x:Name="UserLoginField" Width="200" Margin="10,0,0,0" KeyDown="AuthTriesHistoryUserLoginField_KeyDown"/>
                 <TextBlock Margin="10,0,0,0">(оставьте пустым для вывода всей истории)</TextBlock>
                 
             </StackPanel>
-            <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
-                <TextBlock>Логин пользователя:</TextBlock>
-                <DatePicker x:Name="TriedAtTextBox"/>
-                <TextBlock Margin="10,0,0,0">(оставьте пустым для вывода всей истории)</TextBlock>
+            <StackPanel Margin="10,10,0,0" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" >Дата попытки:</TextBlock>
+                <DatePicker Margin="10,0,0,0" x:Name="TriedAtDatePicker" SelectedDateChanged="TriedAtDatePicker_SelectedDateChanged"/>
+                <TextBlock VerticalAlignment="Center" Margin="10,0,0,0">(оставьте пустым для вывода всей истории)</TextBlock>
             </StackPanel>
-            <DataGrid Height="300" x:Name="AuthTriesHistoryDataGrid"/>
+            <DataGrid Height="300" x:Name="AuthTriesHistoryDataGrid" Margin="10,10,10,0" IsReadOnly="True"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,5">
                 <Button x:Name="FirstPageButton" Width="30">&lt;&lt;</Button>
                 <Button x:Name="PreviousPageButton" Width="30">&lt;</Button>
@@ -42,10 +42,19 @@
                     100
                 </ComboBoxItem>
             </ComboBox>
-            <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+            <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
                 <TextBlock>Количество успешных входов:</TextBlock>
                 <TextBlock Margin="5,0,0,0" x:Name="SuccessfulAuthTriesCountTextBox"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,5,0,0">
+                <TextBlock>Количество неудачных входов:</TextBlock>
+                <TextBlock Margin="5,0,0,0" x:Name="UnsuccessfulAuthTriesCountTextBox"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10,5,0,0">
+                <TextBlock>Количество всех входов:</TextBlock>
+                <TextBlock Margin="5,0,0,0" x:Name="AllAuthTriesCountTextBox"/>
+            </StackPanel>
+            
         </StackPanel>
     </ScrollViewer>
 </Window>

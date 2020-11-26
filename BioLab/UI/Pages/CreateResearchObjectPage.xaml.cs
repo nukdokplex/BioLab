@@ -118,8 +118,6 @@ namespace BioLab.UI.Pages
             PaginationControlsToggleEnabledState(true);
         }
 
-
-
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             PaginationControlsToggleEnabledState(false);
@@ -140,7 +138,6 @@ namespace BioLab.UI.Pages
                 CurrentPage = 0;
                 patients.Clear();
 
-
                 RefreshPatients();
             }
             else
@@ -148,7 +145,6 @@ namespace BioLab.UI.Pages
                 CurrentSearchQuery = string.Empty;
                 CalculateLastPage(out LastPage, App.DB.patients.Count(), EntriesPerPage);
                 CurrentPage = 0;
-
 
                 RefreshPatients();
             }

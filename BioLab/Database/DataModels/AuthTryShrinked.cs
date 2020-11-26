@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BioLab.Database.DataModels
 {
-    class AuthTryShrinked
+    public class AuthTryShrinked
     {
-        public DateTime tried_at;
-        public string login;
-        public bool is_successful;
+        public DateTime tried_at { get; set; }
+        public string login { get; set; }
+        public bool is_successful { get; set; }
     }
 }

@@ -159,7 +159,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="user" Type="bigint" Nullable="false" />
           <Property Name="tried_at" Type="datetime" Nullable="false" />
           <Property Name="is_success" Type="bit" Nullable="false" />
@@ -1025,7 +1025,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="user" Type="Int64" Nullable="false" />
           <Property Name="tried_at" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="is_success" Type="Boolean" Nullable="false" />

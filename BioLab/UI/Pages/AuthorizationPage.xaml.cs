@@ -28,8 +28,39 @@ namespace BioLab.UI.Pages
             InitializeComponent();
         }
 
+        public static void SaveAuthTry(user u, bool is_success)
+        {
+            users_auth_tries currentTry = new users_auth_tries();
+            currentTry.is_success = is_success;
+            currentTry.tried_at = DateTime.Now;
+            currentTry.user = u.id;
+            //currentTry.id = App.DB.users_auth_tries.Count() + 1;
+            App.DB.users_auth_tries.Add(currentTry);
+            App.DB.SaveChanges();
+        }
+
+        public static user TryFoundUserByLogin(string login)
+        {
+            try
+            {
+
+                return (from user in App.DB.users
+                 where user.login == login
+                 select user).Single();
+
+            }
+            catch (InvalidOperationException exception)
+            {
+                user u = new user();
+                u.id = -1;
+                return u;
+            }
+            
+        }
+
         private void authButton_Click(object sender, RoutedEventArgs e)
         {
+            List<user> foundUsers = new List<user>();
             if (loginField.Text == String.Empty || passwordField.Password == String.Empty)
             {
                 MessageBox.Show("Все поля должны быть заполнены", "Ошибка при входе", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -37,6 +68,7 @@ namespace BioLab.UI.Pages
             }
             try
             {
+                
                 App.currentUser = (from user in App.DB.users
                                    where user.login == loginField.Text &&
                                    user.password == passwordField.Password
@@ -44,10 +76,19 @@ namespace BioLab.UI.Pages
             }
             catch (InvalidOperationException exception)
             {
+
+                user u = TryFoundUserByLogin(loginField.Text);
+                if (u.id != -1)
+                {
+                    SaveAuthTry(u, false);
+                }
+                
                 MessageBox.Show("Нет пользователя с таким логином и (или) паролем: "+exception.Message, "Ошибка при входе", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            
+
+            SaveAuthTry(App.currentUser, true);
+
             NavigationService.Navigate(new StartPage());
             
         }
