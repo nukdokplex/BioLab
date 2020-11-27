@@ -41,11 +41,11 @@ namespace BioLab.UI.Pages
         { 
             get
             {
-                 long? id = (patientsDataGrid.SelectedItem as PatientsShrinked).id;
-                 if (id.HasValue)
-                    {
-                        return unchecked((long)id);
-                    }
+                long? id = (patientsDataGrid.SelectedItem as PatientsShrinked).id;
+                if (id.HasValue)
+                {
+                      return unchecked((long)id);
+                }
                 return -1;
             }
         }
@@ -94,14 +94,14 @@ namespace BioLab.UI.Pages
                             }
                             )
                             .Skip(CurrentOffset).Take(EntriesPerPage).ToList();
-
+                
 
             }
             else
             {
                 patients = (from p in App.DB.patients
-                            where p.full_name.Contains(CurrentSearchQuery)
                             orderby p.id ascending
+                            
                             select new PatientsShrinked
                             {
                                 id = p.id,
@@ -112,6 +112,8 @@ namespace BioLab.UI.Pages
                             }
                             )
                             .Skip(CurrentOffset).Take(EntriesPerPage).ToList();
+
+                
             }
             patientsDataGrid.Columns.Clear();
             patientsDataGrid.ItemsSource = patients;
@@ -132,8 +134,16 @@ namespace BioLab.UI.Pages
             {
                 CurrentSearchQuery = PatientNameSearchField.Text;
                 List<patient> patients = (from patient in App.DB.patients
-                                          where DbFunctions.Like(patient.full_name, "*" + CurrentSearchQuery + "*")
                                           select patient).ToList();
+
+                for (int i = 0; i <= patients.Count() - 1; i++)
+                {
+                    if (!Utils.Utils.IsStringsInLevensteinDistance(CurrentSearchQuery, patients[i].full_name, 3))
+                    {
+                        patients.RemoveAt(i);
+                    }
+                }
+
                 CalculateLastPage(out LastPage, patients.Count, EntriesPerPage);
                 CurrentPage = 0;
                 patients.Clear();

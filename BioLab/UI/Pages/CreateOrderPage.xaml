@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BioLab.UI.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="3000" d:DesignWidth="800"
-      Title="Создать заказ">
+      d:DesignHeight="1325" d:DesignWidth="800"
+      Title="Создать заказ" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,10 +24,9 @@
                 </StackPanel.Background>
                 <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Center">
                     <TextBlock Margin="0,0,15,0">Имя пациента:</TextBlock>
-                    <TextBox x:Name="PatientNameSearchField" Width="200" Margin="0,0,15,0"/>
-                    <Button x:Name="PatientSearchButton">=- Поиск -=</Button>
+                    <TextBox x:Name="PatientNameSearchField" Width="200" Margin="0,0,15,0" KeyDown="PatientNameSearchField_KeyDown"/>
                 </StackPanel>
-                <DataGrid x:Name="patientsDataGrid" Height="300"/>
+                <DataGrid x:Name="patientsDataGrid" Height="300" Margin="10,0,10,0"/>
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,15" HorizontalAlignment="Center" Name="PatientsPaginationControlsContainer">
                     <Button x:Name="PatientsFirstPageButton"  Width="30" Margin="7.5,0,7.5,0">&lt;&lt;</Button>
                     <Button x:Name="PatientsPreviousPageButton"  Width="30" Margin="7.5,0,7.5,0">&lt;</Button>
@@ -35,15 +34,19 @@
                     <Button x:Name="PatientsNextPage" Width="30" Margin="7.5,0,7.5,0">&gt;</Button>
                     <Button x:Name="PatientsLastPage" Width="30" Margin="7.5,0,7.5,0">&gt;&gt;</Button>
                 </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="10,0,10,0">
+                    <Button x:Name="SelectPatientButton" Click="SelectPatientButton_Click">Выбрать пациента</Button>
+                    <TextBlock Margin="10,0,0,0" x:Name="SelectedPatientTextBox"/>
+                </StackPanel>
                 
                 
                 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
                 <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Center">
                     <TextBlock Margin="0,0,15,0">Код пробирки:</TextBlock>
                     <TextBox x:Name="ResearchObjectsSearchField" Width="200" Margin="0,0,15,0"/>
-                    <Button x:Name="ResearchObjectsSearchButton">=- Поиск -=</Button>
                 </StackPanel>
-                <DataGrid x:Name="ResearchObjectsDataGrid" Height="300"/>
+                <DataGrid x:Name="ResearchObjectsDataGrid" Height="300" Margin="10,0,10,0"/>
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,15" HorizontalAlignment="Center" Name="ResearchObjectsPaginationControlsContainer">
                     <Button x:Name="ResearchObjectsFirstPageButton"  Width="30" Margin="7.5,0,7.5,0">&lt;&lt;</Button>
                     <Button x:Name="ResearchObjectsPreviousPageButton"  Width="30" Margin="7.5,0,7.5,0">&lt;</Button>
@@ -51,13 +54,18 @@
                     <Button x:Name="ResearchObjectsNextPage" Width="30" Margin="7.5,0,7.5,0">&gt;</Button>
                     <Button x:Name="ResearchObjectsLastPage" Width="30" Margin="7.5,0,7.5,0">&gt;&gt;</Button>
                 </StackPanel>
+                <StackPanel Orientation="Vertical" Margin="10,0,10,0">
+                    <Button x:Name="SelectResearchObjectButton" Click="SelectResearchObjectButton_Click">Выбрать пробирку</Button>
+                    <StackPanel Orientation="Vertical" Name="SelectedResearchObjectsContainer" Margin="5,5,5,0">
+                        
+                    </StackPanel>
+                </StackPanel>
                 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
                 <StackPanel Orientation="Horizontal" Margin="20" HorizontalAlignment="Center">
                     <TextBlock Margin="0,0,15,0">Название услуги:</TextBlock>
-                    <TextBox x:Name="ServicesSearchField" Width="200" Margin="0,0,15,0"/>
-                    <Button x:Name="ServicesSearchButton">=- Поиск -=</Button>
+                    <TextBox x:Name="ServicesSearchField" Width="200" Margin="0,0,15,0" KeyDown="ServicesSearchField_KeyDown"/>
                 </StackPanel>
-                <DataGrid x:Name="ServicesDataGrid" Height="300"/>
+                <DataGrid x:Name="ServicesDataGrid" Height="300" Margin="10,0,10,0"/>
                 <StackPanel Orientation="Horizontal" Margin="0,15,0,15" HorizontalAlignment="Center" Name="ServicesPaginationControlsContainer">
                     <Button x:Name="ServicesFirstPageButton"  Width="30" Margin="7.5,0,7.5,0">&lt;&lt;</Button>
                     <Button x:Name="ServicesPreviousPageButton"  Width="30" Margin="7.5,0,7.5,0">&lt;</Button>
@@ -65,10 +73,16 @@
                     <Button x:Name="ServicesNextPage" Width="30" Margin="7.5,0,7.5,0">&gt;</Button>
                     <Button x:Name="ServicesLastPage" Width="30" Margin="7.5,0,7.5,0">&gt;&gt;</Button>
                 </StackPanel>
-                
+                <StackPanel Orientation="Vertical" Margin="10,0,10,0">
+                    <Button x:Name="SelectServiceButton" Click="SelectServiceButton_Click">Выбрать услугу</Button>
+                    <StackPanel Orientation="Vertical" Name="SelectedServicesContainer" Margin="5,5,5,0">
+
+                    </StackPanel>
+                </StackPanel>
+
             </StackPanel>
         </ScrollViewer>
-        <Button Name="CreateOrderButton" Height="100" Width="200" Grid.Row="0" Grid.Column="1"  >
+        <Button Name="CreateOrderButton" Height="100" Width="200" Grid.Row="0" Grid.Column="1" Click="CreateOrderButton_Click" >
             <TextBlock TextAlignment="Center" FontSize="28">
                 Создать<LineBreak/>заказ
             </TextBlock>

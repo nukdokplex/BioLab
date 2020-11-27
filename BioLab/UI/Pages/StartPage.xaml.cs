@@ -75,6 +75,8 @@ namespace BioLab.UI.Pages
                 services.Add(service.code); // Retrieving services codes from POJO
             }
 
+            App.currentUserServices = services;
+
             List<string> serviceNames = new List<string>();
             serviceNames = (from service in App.DB.services
                             where services.Contains(service.id)

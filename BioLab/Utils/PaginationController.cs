@@ -27,11 +27,11 @@ namespace BioLab.Utils
                     Controls.CurrentPageTextBox.Text = (value + 1).ToString();
                     if (EntriesPerPage != -1)
                     {
-                        //OnRefresh(this, new PaginationOnRefreshEventArgs(CurrentOffset, CurrentSearchQuery, -1, Controls));
+                        OnRefresh(this, new PaginationOnRefreshEventArgs(CurrentOffset, CurrentSearchQuery, -1, Controls));
                     }
                     else
                     {
-                       // OnRefresh(this, new PaginationOnRefreshEventArgs(0, CurrentSearchQuery, -1, Controls));
+                        OnRefresh(this, new PaginationOnRefreshEventArgs(0, CurrentSearchQuery, -1, Controls));
                     }
                 }
             }
@@ -47,7 +47,7 @@ namespace BioLab.Utils
 
         private long EntriesCount = 0;
         private int EntriesPerPage = 20;
-        private string CurrentSearchQuery = "";
+        public string CurrentSearchQuery = "";
         public long CurrentOffset 
         { 
             get
@@ -74,7 +74,6 @@ namespace BioLab.Utils
 
         protected void Init()
         {
-            CurrentPage = 0;
             InitControls();
         }
 

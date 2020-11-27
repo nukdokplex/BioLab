@@ -13,6 +13,7 @@ namespace BioLab
     {
         public static entities DB;
         public static user currentUser;
+        public static List<long> currentUserServices;
         public static MainWindow MainWindow;
         protected override void OnStartup(StartupEventArgs e)
         {
